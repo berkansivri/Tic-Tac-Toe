@@ -2,21 +2,17 @@
 	<div class="overlay">
 		<div class="modal">
 			<div>
+				<p class="winner">Let's play!</p>
 				<p>X's or O's?</p>
 			</div>
-			<button class="start x-color" @click="select('x')">x</button>
-			<button class="start o-color" @click="select('y')">o</button>
+			<button class="start x-color" @click="$emit('mark', 'x')">x</button>
+			<button class="start o-color" @click="$emit('mark', 'o')">o</button>
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
-	methods: {
-		select(mark) {
-			this.$emit("mark", mark)
-		}
-	}
 };
 </script>
 

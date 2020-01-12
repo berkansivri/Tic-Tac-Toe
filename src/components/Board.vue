@@ -1,36 +1,55 @@
 <template>
   <div class="container">
     <div class="row" v-for="(cell,i) in cells" :key="i">
-      <Square v-for="(item, j) in cell" :key="j" @click.native="cellClicked(i, j)">
-        {{item}}
-      </Square>
+      <Cell v-for="(item, j) in cell" :key="j" 
+						@click.native="cellClicked(i, j)" 
+						:mark="item"
+			/>
     </div>
     <div class="hline line1"></div>
     <div class="hline line2"></div>
     <div class="vline line3"></div>
     <div class="vline line4"></div>
-		<Choice v-if="!mark" @mark="mark = $event" />
+
+		<Choice v-if="!user" @mark="selectMark" />
+		<Winner v-if="winner" :winner="winner" @mark="selectMark"/>
   </div>
 </template>
 
 <script>
-import Square from './Square'
+import Cell from './Cell'
 import Choice from './Choice'
+import Winner from './Winner'
+import checkWin from '../util/checkWin'
+
 export default {
   components: {
-		Square,
-		Choice
+		Cell,
+		Choice,
+		Winner
   },
   data() {
     return {
 			cells: Array(3).fill(null).map(() => Array(3).fill(null)),
-			mark: null
+			user: null,
+			comp: null,
+			winner: null
     }
   },
   methods: {
     cellClicked(i, j) {
-      console.log(i, j);
-    }
+			if(!this.cells[i][j]) {
+				this.$set(this.cells[i], j, this.user);
+				setTimeout(() => {
+					this.winner = checkWin(this.cells)
+				}, 0);
+			}
+		},
+		selectMark(mark) {
+			Object.assign(this.$data, this.$options.data())
+			this.user = mark
+			this.comp = (mark === "x") ? "o" : "x"
+		}
   }
 };
 </script>
@@ -166,15 +185,5 @@ button:hover {
 .overlay-on .container {
 	-webkit-filter: blur(5px);
 	filter: blur(5px);
-}
-
-
-
-.winner {
-	font-size: 150%;
-}
-
-p {
-	margin: 5px;
 }
 </style>

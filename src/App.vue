@@ -6,6 +6,7 @@
 
 <script>
 import Board from "./components/Board";
+
 export default {
 	name: "app",
 	components: {
