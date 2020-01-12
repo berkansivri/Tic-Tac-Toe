@@ -6,6 +6,7 @@
 						:mark="item"
 			/>
     </div>
+
     <div class="hline line1"></div>
     <div class="hline line2"></div>
     <div class="vline line3"></div>
@@ -21,6 +22,7 @@ import Cell from './Cell'
 import Choice from './Choice'
 import Winner from './Winner'
 import checkWin from '../util/checkWin'
+import play, { aiAssign } from '../util/minimax'
 
 export default {
   components: {
@@ -35,20 +37,37 @@ export default {
 			comp: null,
 			winner: null
     }
-  },
+	},
+	watch: {
+		cells: {
+			handler() {
+				this.winner = checkWin(this.cells)
+			},
+			deep: true,
+			immediate: true
+		}
+	},
   methods: {
     cellClicked(i, j) {
 			if(!this.cells[i][j]) {
 				this.$set(this.cells[i], j, this.user);
-				setTimeout(() => {
-					this.winner = checkWin(this.cells)
-				}, 0);
+				this.$nextTick(() => {
+					if(!this.winner)
+						this.aiPlay()
+				})
 			}
 		},
 		selectMark(mark) {
 			Object.assign(this.$data, this.$options.data())
+			aiAssign(this.cells, mark)
 			this.user = mark
 			this.comp = (mark === "x") ? "o" : "x"
+			if(mark === "o")
+				this.aiPlay()
+		},
+		aiPlay() {
+			const { i, j } = play()
+			this.$set(this.cells[i], j, this.comp)
 		}
   }
 };
