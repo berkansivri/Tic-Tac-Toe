@@ -1,6 +1,7 @@
 {
   "name": "tic-tac-toe",
   "author": "berkansivri",
+  "description": "AI Based Tic Tac Toe Game on Vue",
   "repository": {
     "url": "https://github.com/berkansivri/Tic-Tac-Toe"
   },

@@ -15,12 +15,13 @@ function checkWin(cells) {
   
   for(let pattern of winPatterns) {
     const [[i0, j0], [i1, j1], [i2, j2]] = pattern
-    let c1 = cells[i0][j0], c2 = cells[i1][j1], c3 = cells[i2][j2]
+    let c1 = cells[i0][j0], 
+        c2 = cells[i1][j1], 
+        c3 = cells[i2][j2]
 
     if(c1 && c2 && c3) {
-      if(c1 === c2 && c2 === c3) {
+      if(c1 === c2 && c2 === c3)
         return c1
-      }
     } else {
       isTie = false
     }

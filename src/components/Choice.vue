@@ -51,4 +51,22 @@ export default {
 	color: #e110a0;
 	border-color: #e110a0;
 }
+
+button {
+	cursor: pointer;
+	border-radius: 5px;
+	margin: 10px;
+	padding: 5px 20px 10px 20px;
+	padding: 1vmin 4vmin 2vmin 4vmin;
+	font-size: 300%;
+	font-size: 10vmin;
+	background-color: transparent;
+	outline: none;
+	border-style: solid;
+	font-family: "PT Mono", sans;
+}
+
+button:hover {
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
 </style>

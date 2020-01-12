@@ -1,20 +1,20 @@
 <template>
-  <div class="container">
-    <div class="row" v-for="(cell,i) in cells" :key="i">
-      <Cell v-for="(item, j) in cell" :key="j" 
-						@click.native="cellClicked(i, j)" 
-						:mark="item"
-			/>
-    </div>
-
-    <div class="hline line1"></div>
-    <div class="hline line2"></div>
-    <div class="vline line3"></div>
-    <div class="vline line4"></div>
-
+	<div>
+		<div class="container" :class="{'overlay-on': winner}">
+			<div class="row" v-for="(row,i) in cells" :key="i">
+				<Cell v-for="(col, j) in row" :key="j" 
+							@click.native="cellClicked(i, j)" 
+							:mark="col"
+				/>
+			</div>
+			<div class="hline line1"></div>
+			<div class="hline line2"></div>
+			<div class="vline line3"></div>
+			<div class="vline line4"></div>
+		</div>
 		<Choice v-if="!user" @mark="selectMark" />
 		<Winner v-if="winner" :winner="winner" @mark="selectMark"/>
-  </div>
+	</div>
 </template>
 
 <script>
@@ -50,7 +50,7 @@ export default {
   methods: {
     cellClicked(i, j) {
 			if(!this.cells[i][j]) {
-				this.$set(this.cells[i], j, this.user);
+				this.$set(this.cells[i], j, this.user)
 				this.$nextTick(() => {
 					if(!this.winner)
 						this.aiPlay()
@@ -74,66 +74,6 @@ export default {
 </script>
 
 <style>
-.cell {
-	float: left;
-	width: 150px;
-	width: 30vmin;
-	height: 150px;
-	height: 30vmin;
-	position: relative;
-}
-
-.x:before {
-	position: absolute;
-	top: 0;
-	left: 75px;
-	left: 15vmin;
-	content: "";
-	display: block;
-	width: 7px;
-	width: 1.5vmin;
-	height: 150px;
-	height: 30vmin;
-	background-color: #10a0e1;
-	border-radius: 5px;
-	-webkit-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-
-.x:after {
-	position: absolute;
-	top: 0;
-	left: 75px;
-	left: 15vmin;
-	content: "";
-	display: block;
-	width: 7px;
-	width: 1.5vmin;
-	height: 150px;
-	height: 30vmin;
-	background-color: #10a0e1;
-	border-radius: 5px;
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
-
-.o {
-	position: absolute;
-	top: 15px;
-	top: 3vmin;
-	left: 15px;
-	left: 3vmin;
-	width: 120px;
-	width: 24vmin;
-	height: 120px;
-	height: 24vmin;
-	border: 8px solid #e110a0;
-	border: 1.5vmin solid #e110a0;
-	border-radius: 50%;
-}
-
 .hline {
 	position: absolute;
 	height: 5px;
@@ -178,30 +118,7 @@ export default {
 	right: 29.5vmin;
 }
 
-.pointer {
-	cursor: pointer;
-}
-
-
-
-button {
-	cursor: pointer;
-	border-radius: 5px;
-	margin: 10px;
-	padding: 5px 20px 10px 20px;
-	padding: 1vmin 4vmin 2vmin 4vmin;
-	font-size: 300%;
-	font-size: 10vmin;
-	background-color: transparent;
-	outline: none;
-	border-style: solid;
-	font-family: "PT Mono", sans;
-}
-button:hover {
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-}
-
-.overlay-on .container {
+.overlay-on {
 	-webkit-filter: blur(5px);
 	filter: blur(5px);
 }
