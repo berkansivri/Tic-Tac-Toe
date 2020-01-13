@@ -1,8 +1,8 @@
-<template>
+<template functional>
   <div class="overlay">
     <div class="modal">
-      <p class="winner" v-if="winner === 'o' || winner === 'x'">
-        {{winner.toUpperCase()}} wins!
+      <p class="winner" v-if="props.winner === 'o' || props.winner === 'x'">
+        {{props.winner.toUpperCase()}} wins!
       </p>
       <p class="winner" v-else>
         It's a tie!
@@ -10,8 +10,8 @@
       <p>
         Would you like to play again?
       </p>
-      <button class="start x-color" @click="$emit('mark', 'x')">x</button>
-      <button class="start o-color" @click="$emit('mark', 'o')">o</button>
+      <button class="start x-color" @click="listeners['mark']('x')">x</button>
+      <button class="start o-color" @click="listeners['mark']('o')">o</button>
     </div>
   </div>
 </template>

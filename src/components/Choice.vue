@@ -1,12 +1,12 @@
-<template>
+<template functional>
 	<div class="overlay">
 		<div class="modal">
 			<div>
 				<p class="winner">Let's play!</p>
 				<p>X's or O's?</p>
 			</div>
-			<button class="start x-color" @click="$emit('mark', 'x')">x</button>
-			<button class="start o-color" @click="$emit('mark', 'o')">o</button>
+			<button class="start x-color" @click="listeners['mark']('x')">x</button>
+			<button class="start o-color" @click="listeners['mark']('o')">o</button>
 		</div>
 	</div>
 </template>

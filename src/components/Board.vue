@@ -2,8 +2,8 @@
 	<div>
 		<div class="container" :class="{'overlay-on': winner}">
 			<div class="row" v-for="(row,i) in cells" :key="i">
-				<Cell v-for="(col, j) in row" :key="j" 
-							@click.native="cellClicked(i, j)" 
+				<Cell v-for="(col, j) in row" :key="j"
+							@click="cellClicked(i, j)" 
 							:mark="col"
 				/>
 			</div>

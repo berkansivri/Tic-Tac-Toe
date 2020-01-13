@@ -1,6 +1,6 @@
-<template>
-  <div class="cell" :class="{pointer: !mark}">
-    <div :class="mark">
+<template functional>
+  <div @click="listeners.click" class="cell" :class="{pointer: !props.mark}">
+    <div :class="props.mark">
     </div>
   </div>
 </template>
