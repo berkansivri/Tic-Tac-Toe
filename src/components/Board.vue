@@ -50,20 +50,23 @@ export default {
   methods: {
     cellClicked(i, j) {
 			if(!this.cells[i][j]) {
-				this.$set(this.cells[i], j, this.user)
-				this.$nextTick(() => {
+        this.$set(this.cells[i], j, this.user)
+        // used nextTick because of wait `cells` watcher to set winner state
+				this.$nextTick(() => { 
 					if(!this.winner)
 						this.aiPlay()
 				})
 			}
 		},
 		selectMark(mark) {
-			Object.assign(this.$data, this.$options.data())
+			Object.assign(this.$data, this.$options.data()) //initial state
 			aiAssign(this.cells, mark)
 			this.user = mark
 			this.comp = (mark === "x") ? "o" : "x"
-			if(mark === "o")
-				this.aiPlay()
+			if(mark === "o") {
+        // first random play by AI
+        this.$set(this.cells[~~(Math.random() * 3)], ~~(Math.random() * 3), this.comp)
+      }
 		},
 		aiPlay() {
 			const { i, j } = play()

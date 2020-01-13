@@ -1,4 +1,8 @@
-# tic-tac-toe
+# Tic Tac Toe
+ <p align="center">
+  <br />
+  <a target="_blank" href="http://tictacai.herokuapp.com/"><b>--- Live ---</b></a>
+</p>
 
 ## Project setup
 ```
@@ -19,6 +23,3 @@ yarn build
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
