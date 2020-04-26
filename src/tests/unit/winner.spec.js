@@ -5,8 +5,8 @@ describe('Winner.vue', () => {
   it('Should render winner properly', () => {
     const wrapper = shallowMount(Winner, {
       propsData: {
-        winner: 'x'
-      }
+        winner: 'x',
+      },
     })
     expect(wrapper.find('.winner').text()).toBe('X wins!')
   })
@@ -20,8 +20,8 @@ describe('Winner.vue', () => {
   it('should emit for marks', () => {
     const wrapper = shallowMount(Winner, {
       listeners: {
-        mark: markSelect
-      }
+        mark: markSelect,
+      },
     })
     wrapper.find('.x-color').trigger('click')
     wrapper.find('.o-color').trigger('click')

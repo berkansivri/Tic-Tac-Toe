@@ -2,7 +2,7 @@
   <div class="overlay">
     <div class="modal">
       <p class="winner" v-if="props.winner === 'o' || props.winner === 'x'">
-        {{props.winner.toUpperCase()}} wins!
+        {{ props.winner.toUpperCase() }} wins!
       </p>
       <p class="winner" v-else>
         It's a tie!
@@ -18,18 +18,18 @@
 
 <script>
 export default {
-  name: "winner",
-  props: ["winner"]
+  name: 'winner',
+  props: ['winner'],
 }
 </script>
 
 <style>
 .winner {
-	font-size: 150%;
+  font-size: 150%;
 }
 
 p {
-	margin: 5px;
+  margin: 5px;
   font-size: 80%;
 }
 </style>

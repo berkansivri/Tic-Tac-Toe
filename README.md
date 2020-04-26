@@ -19,6 +19,11 @@ yarn serve
 yarn build
 ```
 
+### Run unit tests
+```
+yarn test:unit
+```
+
 ### Lints and fixes files
 ```
 yarn lint

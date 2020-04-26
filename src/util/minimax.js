@@ -5,28 +5,27 @@ let scores, board, human, ai
 function aiAssign(cells, user) {
   board = cells
   human = user
-  ai = (user === "x") ? "o" : "x"
-  scores = { 
-    [ai]: 10, 
-    [human]: -10, 
-    tie: 0
+  ai = user === 'x' ? 'o' : 'x'
+  scores = {
+    [ai]: 10,
+    [human]: -10,
+    tie: 0,
   }
 }
 
 function play() {
-
   let bestScore = -Infinity
   let move = null
 
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-      if(!board[i][j]) {
+      if (!board[i][j]) {
         board[i][j] = ai
         let score = minimax()
         board[i][j] = null
-        if(score > bestScore) {
+        if (score > bestScore) {
           bestScore = score
-          move = { i , j }
+          move = { i, j }
         }
       }
     }
@@ -36,15 +35,15 @@ function play() {
 
 function minimax(isMax) {
   let winner = checkWin(board)
-  if(winner) {
+  if (winner) {
     return scores[winner]
   }
 
-  if(isMax) {
+  if (isMax) {
     let bestScore = -Infinity
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
-        if(!board[i][j]) {
+        if (!board[i][j]) {
           board[i][j] = ai
           let score = minimax(false)
           board[i][j] = null
@@ -57,7 +56,7 @@ function minimax(isMax) {
     let bestScore = Infinity
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
-        if(!board[i][j]) {
+        if (!board[i][j]) {
           board[i][j] = human
           let score = minimax(true)
           board[i][j] = null

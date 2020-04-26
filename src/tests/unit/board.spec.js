@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import Board from '../../components/Board.vue'
 
 let wrapper
@@ -7,7 +7,7 @@ describe('Board.vue', () => {
   beforeEach(() => {
     wrapper = shallowMount(Board)
   })
-  
+
   it('to match snapshot', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -22,12 +22,12 @@ describe('Board.vue', () => {
 
     wrapper.setData({ user: 'x' })
     wrapper.vm.$nextTick(() => {
-      expect(wrapper.find("choice-stub").exists()).toBe(false)
+      expect(wrapper.find('choice-stub').exists()).toBe(false)
     })
 
     wrapper.setData({ winner: 'x' })
     wrapper.vm.$nextTick(() => {
-      expect(wrapper.find("winner-stub").exists()).toBe(true)
+      expect(wrapper.find('winner-stub').exists()).toBe(true)
     })
   })
 })

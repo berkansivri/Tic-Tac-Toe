@@ -1,15 +1,14 @@
 import { shallowMount } from '@vue/test-utils'
 import Choice from '../../components/Choice.vue'
 
-describe("Choice.vue", () => {
-  
+describe('Choice.vue', () => {
   const markSelect = jest.fn()
 
   it('should emit for marks', () => {
     const wrapper = shallowMount(Choice, {
       listeners: {
-        mark: markSelect
-      }
+        mark: markSelect,
+      },
     })
     wrapper.find('.x-color').trigger('click')
     wrapper.find('.o-color').trigger('click')

@@ -6,11 +6,11 @@ describe('Cell.vue', () => {
   it('should have click listener', () => {
     const wrapper = shallowMount(Cell, {
       propsData: {
-        mark: 'x'
+        mark: 'x',
       },
       listeners: {
-        click: clickFn
-      }
+        click: clickFn,
+      },
     })
     wrapper.find('.cell').trigger('click')
     expect(clickFn).toHaveBeenCalled()
