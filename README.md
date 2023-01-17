@@ -1,7 +1,7 @@
 # Tic Tac Toe
  <p align="center">
   <br />
-  <a target="_blank" href="http://tictacai.herokuapp.com/"><b>--- Live ---</b></a>
+  <a target="_blank" href="https://tic-tac-ai.vercel.app/"><b>--- Live ---</b></a>
 </p>
 
 ## Project setup
